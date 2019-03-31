@@ -1,0 +1,5 @@
+0.0.2
+ - added own icon; better graphics; improved targeting: now you cannot be teleported into water
+ 
+0.0.1
+ - airst release

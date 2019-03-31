@@ -1,0 +1,13 @@
+{
+  "name": "TagToTeleport",
+  "version": "0.0.2",
+  
+  "title": "Tag To Teleport",
+  "description": "If you place the tag 'teleport-tag' to the map then you will be teleported to this tag; now for free",
+  
+  "author": "darkfrei",
+  "license": "MIT",
+  
+  "dependencies": ["base >= 0.17"],
+  "factorio_version": "0.17"
+}
