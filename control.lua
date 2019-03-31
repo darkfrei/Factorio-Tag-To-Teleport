@@ -1,3 +1,7 @@
+script.on_configuration_changed(function()
+    global.teleports = global.teleports or {}
+end)
+
 script.on_event(defines.events.on_chart_tag_added, function(event)
     if not event.tag.icon or event.tag.icon.name ~= "TagToTeleport_teleport-tag" then
         return
@@ -44,7 +48,6 @@ function create_fixed_teleport_location(player, tag)
         do return end
     end
 
-    global.teleports = global.teleports or {}
     if global.teleports[teleport_number] then
         player.print("Teleport " .. teleport_number .. " already exists!")
         tag.destroy()
@@ -55,7 +58,6 @@ function create_fixed_teleport_location(player, tag)
 end
 
 function teleport_player_to_fixed_teleport_location(player, teleport_number)
-    global.teleports = global.teleports or {}
     if global.teleports[teleport_number] == nill then
         player.print("Teleport " .. teleport_number .. " doesn't exist!")
         do return end
