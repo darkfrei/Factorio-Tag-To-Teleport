@@ -1,13 +1,12 @@
 {
   "name": "TagToTeleport",
-  "version": "0.0.2",
-  
+  "version": "1.0.0",
   "title": "Tag To Teleport",
-  "description": "If you place the tag 'teleport-tag' to the map then you will be teleported to this tag; now for free",
-  
-  "author": "darkfrei",
-  "license": "MIT",
-  
-  "dependencies": ["base >= 0.17"],
+  "description": "Place a teleportation tag on the map to travel there instantly. Give it a name and you can fast travel there with a keyboard shortcut (default: CTRL + [0-9]). No costs, perfect for the end-game when you got tired of running and travelling by trains.",
+  "author": "darkfrei & Jarcionek",
+  "homepage": "https://github.com/Jarcionek/Factorio-Tag-To-Teleport",
+  "dependencies": [
+    "base >= 0.17"
+  ],
   "factorio_version": "0.17"
 }

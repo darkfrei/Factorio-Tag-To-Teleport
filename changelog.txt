@@ -1,5 +1,10 @@
+1.0.0
+ - removed an option to teleport a specific player by typing their name into tag name
+ - up to 10 teleport locations can now be saved, the name of tag has to start with a digit that is used as an identifier (e.g. '1 Refinery', '2: Iron', '3 - Train Station' or just '4')
+ - added keyboard shortcuts that allow to teleport to these locations, by default CTRL + [0-9]
+
 0.0.2
  - added own icon; better graphics; improved targeting: now you cannot be teleported into water
  
 0.0.1
- - airst release
+ - first release
