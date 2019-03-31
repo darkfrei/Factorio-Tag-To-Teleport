@@ -1,12 +1,12 @@
 script.on_event(defines.events.on_chart_tag_added, function(event)
-    if not event.tag.icon or event.tag.icon.name ~= "teleport-tag" then
+    if not event.tag.icon or event.tag.icon.name ~= "TagToTeleport_teleport-tag" then
         return
     end
 
     local player = game.players[event.player_index]
 
     if event.tag.text == "" then
-        teleport_player(player, event.tag)
+        teleport_player_to_tag(player, event.tag)
         event.tag.destroy()
     else
         create_fixed_teleport_location(player, event.tag)
@@ -25,27 +25,47 @@ script.on_event(defines.events.on_chart_tag_removed, function(event)
 end)
 
 
+for i = 0, 9 do
+    script.on_event("TagToTeleport_teleport-to-location-" .. i, function(event)
+        local player = game.players[event.player_index]
+        teleport_player_to_fixed_teleport_location(player, i)
+    end)
+end
+
+
+
 function create_fixed_teleport_location(player, tag)
     local first_char = string.sub(tag.text, 1, 1)
-    local number = tonumber(first_char)
+    local teleport_number = tonumber(first_char)
 
-    if number == nil then
+    if teleport_number == nil then
         player.print("Invalid name! First character must be a digit!")
         tag.destroy()
         do return end
     end
 
     global.teleports = global.teleports or {}
-    if global.teleports[number] then
-        player.print("Teleport " .. number .. " already exists!")
+    if global.teleports[teleport_number] then
+        player.print("Teleport " .. teleport_number .. " already exists!")
         tag.destroy()
     else
         game.print("Teleport '" .. tag.text .. "' created")
-        global.teleports[number] = tag
+        global.teleports[teleport_number] = tag
     end
 end
 
-function teleport_player(player, tag)
+function teleport_player_to_fixed_teleport_location(player, teleport_number)
+    global.teleports = global.teleports or {}
+    if global.teleports[teleport_number] == nill then
+        player.print("Teleport " .. teleport_number .. " doesn't exist!")
+        do return end
+    end
+
+    player.print("Teleported to '" .. global.teleports[teleport_number].text .. "'")
+    teleport_player_to_tag(player, global.teleports[teleport_number])
+end
+
+function teleport_player_to_tag(player, tag)
     local position = tag.surface.find_non_colliding_position('player', tag.position, 128, 2)
 
     if position then
