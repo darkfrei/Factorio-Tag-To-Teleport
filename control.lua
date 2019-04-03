@@ -37,6 +37,10 @@ script.on_event(defines.events.on_chart_tag_removed, function(event)
         return
     end
 
+    if event.tag.text == "" then
+        return
+    end
+
     local teleport_number = teleport_number_from_tag(event.tag)
     destroy_fixed_teleport_location(teleport_number)
 end)
@@ -56,12 +60,14 @@ function create_fixed_teleport_location(player, tag)
 
     if teleport_number == nil then
         player.print("Invalid name! First character must be a digit!")
+        tag.text = ""
         tag.destroy()
         do return end
     end
 
     if global.teleports[teleport_number] then
         player.print("Teleport " .. teleport_number .. " already exists!")
+        tag.text = ""
         tag.destroy()
     else
         game.print("Teleport '" .. tag.text .. "' created")
