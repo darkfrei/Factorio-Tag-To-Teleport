@@ -7,11 +7,11 @@ Place a teleportation tag on the map to travel there instantly. Give it a name a
 
 # How to use it
 
-Placing a tag with no name to teleport to that location.
+Place a tag with no name to teleport to that location.
 
 To save a teleportation location for later use, give it a name that starts with a digit. You can name it e.g. '1 Refinery', '2: Iron', '3 - Train Station' or just '4'.
 
-Default controls to teleport to save locations: CTRL + [0-9]
+Default controls to teleport to saved locations: CTRL + [0-9]
 
 # Credits
 
