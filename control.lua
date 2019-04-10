@@ -21,7 +21,7 @@ script.on_event(defines.events.on_chart_tag_modified, function(event)
     -- if was a fixed teleport
     if event.old_icon and event.old_icon.name == "TagToTeleport_teleport-tag" then
         local teleport_number = teleport_number_from_text(event.old_text)
-        destroy_fixed_teleport_location(teleport_number)
+        destroy_fixed_teleport_location(teleport_number, event.old_text)
     end
 
     -- if it is now a fixed teleport
@@ -75,8 +75,8 @@ function create_fixed_teleport_location(player, tag)
     end
 end
 
-function destroy_fixed_teleport_location(teleport_number)
-    local teleport_name = global.teleports[teleport_number].text
+function destroy_fixed_teleport_location(teleport_number, teleport_name)
+    teleport_name = teleport_name or global.teleports[teleport_number].text
     global.teleports[teleport_number] = nil
     game.print("Teleport '" .. teleport_name .. "' removed")
 end
