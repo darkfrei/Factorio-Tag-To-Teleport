@@ -9,11 +9,6 @@ data:extend ({
   },
   {
     type = "custom-input",
-    name = "TagToTeleport_teleport-to-previous-location",
-    key_sequence = "CONTROL + GRAVE"
-  },
-  {
-    type = "custom-input",
     name = "TagToTeleport_teleport-to-location-0",
     key_sequence = "CONTROL + 0"
   },
@@ -61,5 +56,10 @@ data:extend ({
     type = "custom-input",
     name = "TagToTeleport_teleport-to-location-9",
     key_sequence = "CONTROL + 9"
+  },
+  {
+    type = "custom-input",
+    name = "TagToTeleport_teleport-to-previous-location",
+    key_sequence = "CONTROL + GRAVE"
   }
 })
