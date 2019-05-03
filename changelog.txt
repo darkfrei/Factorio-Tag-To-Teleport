@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: NOT YET RELEASED
+Date: ?
+  Changes:
+    - Added option to teleport to the location where the player was when they teleported to the saved location. This is to allow a quick travel between a remote location and your base.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.2
 Date: 03/05/2019
   Bugfixes:

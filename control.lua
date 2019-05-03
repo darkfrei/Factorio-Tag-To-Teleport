@@ -1,5 +1,6 @@
 script.on_configuration_changed(function()
     global.teleports = global.teleports or {}
+    global.previous_player_position = global.previous_player_position or {}
 end)
 
 script.on_event(defines.events.on_chart_tag_added, function(event)
@@ -53,6 +54,17 @@ for i = 0, 9 do
     end)
 end
 
+script.on_event("TagToTeleport_teleport-to-previous-location", function(event)
+    local player = game.players[event.player_index]
+    if (global.previous_player_position[event.player_index] == nil) then
+        player.print("No previous location saved")
+        return
+    end
+
+    local position = global.previous_player_position[event.player_index].position
+    local surface = global.previous_player_position[event.player_index].surface
+    teleport_player_to_position(player, position, surface)
+end)
 
 
 function create_fixed_teleport_location(player, tag)
@@ -82,10 +94,15 @@ function destroy_fixed_teleport_location(teleport_number, teleport_name)
 end
 
 function teleport_player_to_fixed_teleport_location(player, teleport_number)
-    if global.teleports[teleport_number] == nill then
+    if global.teleports[teleport_number] == nil then
         player.print("Teleport " .. teleport_number .. " doesn't exist!")
         do return end
     end
+
+    global.previous_player_position[player.index] = {
+        position = player.position,
+        surface = player.surface
+    }
 
     player.print("Teleported to '" .. global.teleports[teleport_number].text .. "'")
     teleport_player_to_tag(player, global.teleports[teleport_number])
@@ -95,11 +112,15 @@ function teleport_player_to_tag(player, tag)
     local position = tag.surface.find_non_colliding_position("character", tag.position, 128, 2)
 
     if position then
-        player.print("Traveled distance: " .. distance(player.position, position))
-        player.teleport(position, tag.surface)
+        teleport_player_to_position(player, position, tag.surface)
     else
         player.print("No valid position found nearby that location!")
     end
+end
+
+function teleport_player_to_position(player, position, surface)
+    player.print("Traveled distance: " .. distance(player.position, position))
+    player.teleport(position, surface)
 end
 
 
