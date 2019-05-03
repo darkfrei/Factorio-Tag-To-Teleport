@@ -92,7 +92,7 @@ function teleport_player_to_fixed_teleport_location(player, teleport_number)
 end
 
 function teleport_player_to_tag(player, tag)
-    local position = tag.surface.find_non_colliding_position('player', tag.position, 128, 2)
+    local position = tag.surface.find_non_colliding_position("character", tag.position, 128, 2)
 
     if position then
         player.print("Traveled distance: " .. distance(player.position, position))
