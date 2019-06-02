@@ -86,18 +86,20 @@ function destroy_fixed_teleport_location(teleport_number, teleport_name)
 end
 
 function teleport_player_to_fixed_teleport_location(player, teleport_number)
-    if global.teleports[teleport_number] == nil then
+    local tag = global.teleports[teleport_number] -- I can reproduce this error, another mods can delete this tag and it's not more valid / 2019-06-02 darkfrei
+
+    if tag == nil or not (tag.valid) then
+        global.teleports[teleport_number] = nil
         player.print("Teleport " .. teleport_number .. " doesn't exist!")
         do return end
-    end
-
-    player.print("Teleported to '" .. global.teleports[teleport_number].text .. "'")
+    end    
+    
+    player.print("Teleported to '" .. tag.text .. "'")
     teleport_player_to_tag(player, global.teleports[teleport_number])
 end
 
 function teleport_player_to_tag(player, tag)
     local position = tag.surface.find_non_colliding_position("character", tag.position, 128, 2)
-
     if position then
         player.print("Traveled distance: " .. distance(player.position, position))
         player.teleport(position, tag.surface)
