@@ -1,3 +1,7 @@
+script.on_init(function()
+    global.teleports = global.teleports or {}
+end)
+
 script.on_configuration_changed(function()
     global.teleports = global.teleports or {}
 end)
@@ -82,7 +86,7 @@ function destroy_fixed_teleport_location(teleport_number, teleport_name)
 end
 
 function teleport_player_to_fixed_teleport_location(player, teleport_number)
-    if global.teleports[teleport_number] == nill then
+    if global.teleports[teleport_number] == nil then
         player.print("Teleport " .. teleport_number .. " doesn't exist!")
         do return end
     end
